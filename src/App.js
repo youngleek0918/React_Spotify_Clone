@@ -27,27 +27,32 @@ function App() {
 
       spotify.setAccessToken(_token);
 
-      // getMe(): Returns the details of the authenticated user.
       spotify.getMe().then((user) => {
         // console.log('person', user);
-
         dispatch({
           type: 'SET_USER',
           user: user
         });
       });
+
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists,
+        });
+      });
     }
 
-    console.log("i have a token", token);
+    // console.log("i have a token", token);
   }, []);
 
-  console.log('person', user);
-  console.log('token', token);
+  // console.log('person', user);
+  // console.log('token', token);
 
 
   return (
     <div className="app">
-      {token ? <Player /> : <Login />}
+      {token ? <Player spotify={spotify} /> : <Login />}
     </div>
   );
 }
