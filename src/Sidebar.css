@@ -12,6 +12,8 @@
 
 .sidebar::-webkit-scrollbar {
     display: none;
+    height: 100vh;
+    background-color: #040404;
 }
 
 .sidebar__logo {
